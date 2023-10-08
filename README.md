@@ -12,7 +12,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ### Available Scripts
 
-In the project directory `cd Speech-Transcription-Verification/frontend/speech-transcription-app/`, you can run:
+In the project directory `cd AI-Model-Training-Deployment-Genome-Sequencing_Girlgenius/Frontend/`, you can run:
 
 #### `npm start`
 
