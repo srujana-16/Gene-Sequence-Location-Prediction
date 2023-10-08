@@ -1,0 +1,117 @@
+/* Reset some default styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Times New Roman', Times, serif, sans-serif;
+}
+
+/* Basic app styles */
+.App {
+  background-color: #f2f2f2;
+  color: #333;
+  transition: background-color 0.3s, color 0.3s;
+  text-align: center;
+  padding: 20px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Dark mode styles */
+.App.dark {
+  background-color: #333;
+  color: #fff;
+}
+
+/* Title bar styles */
+.title-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+  background-color: #818588;
+  color: #fff;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); 
+}
+
+.title-bar h1 {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif, sans-serif;
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.title-bar button {
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-family: 'Arial', sans-serif;
+  font-weight: bold;
+  font-size: 0.5rem;
+  text-transform: uppercase;
+  margin-left: 1px;
+}
+
+.title-bar button:hover {
+  text-decoration: none; 
+}
+
+/* Navigation styles */
+.navigation {
+  margin-top: 20px;
+}
+
+.navigation ul {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+}
+
+.navigation li {
+  margin-right: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-family: 'Arial', sans-serif;
+  font-size: 0.9rem;
+  color: #646161;
+}
+
+/* File upload styles */
+.file-upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.upload-button {
+  display: inline-block;
+  background-color: #132154;
+  color: #fff;
+  padding: 12px 24px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+  font-family: 'Arial', sans-serif;
+  font-weight: bold;
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+
+.upload-button:hover {
+  background-color: #005a9c;
+}
+
+.upload-button input[type="file"] {
+  display: none;
+}
+
+.file-upload p {
+  margin-top: 10px;
+  font-family: 'Arial', sans-serif;
+  font-weight: bold;
+  font-size: 1rem;
+}
