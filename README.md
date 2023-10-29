@@ -1,6 +1,30 @@
 # AI-Model-Training-Deployment-Genome-Sequencing_Girlgenius
 
-## Instructions to run
+## Aim
+To develop and deploy an AI/ML model/web app that is capable of accurately predicting from which location a particular sequence originated or spread from.​
+
+## Prerequisites
+
+Make sure you have the following software installed on your local machine:
+
+- [Docker](https://docs.docker.com/get-docker/)
+- [Node.js](https://nodejs.org/) (only if you want to run the application locally without Docker)
+
+## Getting Started
+
+These instructions will help you run the application using Docker. If you prefer to run it locally, please skip to the "Local Development" section.
+
+- Clone this directory and move to its root using `cd AI-Model-Training-Deployment-Genome-Sequencing_Girlgenius/` 
+- Run ` cd Frontend/`
+- Build the Docker image: `sudo docker build -t your-docker-image-name .`
+- Run the Docker container: `sudo docker run -p 3000:3000 your-docker-image-name`
+
+Note - Running Docker with `sudo` can be necessary if your user doesn't have the necessary permissions to interact with Docker.
+
+## Local Development 
+
+If you want to run the application locally without Docker for development purposes:
+
 - Clone this directory and move to its root using `cd AI-Model-Training-Deployment-Genome-Sequencing_Girlgenius/` 
 - Run ` cd Frontend/`
 - Then run `npm start` to run the app in the development mode.
@@ -47,8 +71,3 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).

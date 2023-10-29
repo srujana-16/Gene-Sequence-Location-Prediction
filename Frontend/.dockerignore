@@ -1,0 +1,9 @@
+/node_modules
+npm-debug.log
+yarn-error.log
+.vscode/
+.git/
+.idea/
+
+# Ignore build artifacts
+build/
