@@ -1,0 +1,92 @@
+.login-container {
+    display: flex;
+    min-height: 100vh;
+    background-image: url('./top-view-map-blue-background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-form {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(96, 91, 91, 0.794);
+    text-align: center;
+    padding: 30px;
+    margin: 0 auto;
+    max-width: 400px;
+    border-radius: 20px;
+    transform: translateX(70%);
+}
+
+.login-form input[type="first_name"],
+.login-form input[type="last_name"],
+.login-form input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+    box-sizing: border-box;
+}
+
+
+.error-message {
+    color: white;
+    margin-top: 1px;
+}
+
+
+.text-center {
+    text-align: center;
+}
+
+.text-md-start {
+    text-align: left;
+}
+
+.login-button {
+    background-color: #042743;
+    color: white;
+    padding: 14px 36px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    margin-top: 12px;
+}
+
+.login-button:hover {
+    background: linear-gradient(to bottom, #042743, #0056b3);
+    transform: scale(1.02);
+}
+
+.btn-primary {
+    background-color: #042743;
+    color: white;
+    padding: 14px 36px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.btn-primary:hover {
+    background-color: darkblue;
+}
+
+.link-danger {
+    color: rgb(238, 229, 229);
+}
+
+/* Responsive styles */
+@media (max-width: 40px) {
+    .login-container {
+        height: 60%;
+    }
+}

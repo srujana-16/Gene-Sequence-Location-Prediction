@@ -1,8 +1,10 @@
 /* Reset some default styles */
-body {
+#root {
   margin: 0;
-  padding: 0;
+  width: 100%;
+  height: 100vh;
   font-family: 'Times New Roman', Times, serif, sans-serif;
+  display: 'flex'
 }
 
 /* Basic app styles */
@@ -33,7 +35,7 @@ body {
   padding: 10px;
   background-color: #818588;
   color: #fff;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); 
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .title-bar h1 {
@@ -55,7 +57,7 @@ body {
 }
 
 .title-bar button:hover {
-  text-decoration: none; 
+  text-decoration: none;
 }
 
 /* Navigation styles */
@@ -77,6 +79,24 @@ body {
   font-family: 'Arial', sans-serif;
   font-size: 0.9rem;
   color: #646161;
+}
+
+
+.logout-button {
+  position: absolute;
+  top: 90px;
+  right: 20px;
+  padding: 5px 10px;
+  background-color: #042743;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.logout-button:hover {
+  background: linear-gradient(to bottom, #042743, #0056b3);
+  transform: scale(1.02);
 }
 
 /* File upload styles */
