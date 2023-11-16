@@ -135,3 +135,79 @@
   font-weight: bold;
   font-size: 1rem;
 }
+
+/* File list styles */
+.file-content-box {
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin-top: 20px;
+  background-color: #f9f9f9; /* Light mode background color */
+}
+
+.file-content-box.dark {
+  background-color: #4a4a4a; /* Dark mode background color */
+}
+
+.file-content-box h3 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+  color: #535252; /* Default text color */
+}
+
+.file-content-box.dark h3 {
+  color: #eee; /* Text color in dark mode */
+}
+
+.file-content {
+  white-space: pre-line;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #333; /* Default text color */
+}
+
+.file-content.dark {
+  color: #eee; /* Text color in dark mode */
+}
+
+
+/* About us section */
+.about-us-section {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #e5e5e5;
+  border: 2px solid #aeadad;
+  padding: 20px;
+  box-sizing: border-box;
+  color: #1b1b1b; /* Default text color */
+  font-family: 'Arial', sans-serif; /* Font family */
+}
+
+.about-us-section h2 {
+  margin-bottom: 15px;
+  font-size: 2em; 
+  color: #454444; /* Heading text color */
+  font-weight: bold; /* Bold font weight */
+}
+
+.about-us-section p {
+  line-height: 1.6;
+  color: #383737;
+  font-size: 1.2em; 
+}
+
+/* Dark mode */
+.App.dark .about-us-section {
+  background-color: #515050; /* Dark background color */
+  color: #bbbaba; /* Text color for dark mode */
+}
+
+.App.dark .about-us-section h2 {
+  color: #bbbaba; /* Heading text color for dark mode */
+}
+
+.App.dark .about-us-section p{
+  color: #bbbaba; /* Text color for dark mode */
+}
+
