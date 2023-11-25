@@ -1,13 +1,20 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './App.css';
 import Switch from 'react-switch';
-
 
 function MainContent() {
     const [selectedFile, setSelectedFile] = useState(null);
     const [darkMode, setDarkMode] = useState(false);
     const aboutUsRef = useRef(null);
     const [fileContent, setFileContent] = useState('');
+    const [showAboutUs, setShowAboutUs] = useState(false);
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
 
     const handleFileChange = (e) => {
         const file = e.target.files[0];
@@ -17,7 +24,6 @@ function MainContent() {
             const reader = new FileReader();
             reader.onload = (event) => {
                 const contents = event.target.result;
-                // Splitting the content by newline and extracting the first 2-3 lines
                 const firstFewLines = contents.split('\n').slice(0, 3).join('\n');
                 setFileContent(firstFewLines);
             };
@@ -29,30 +35,55 @@ function MainContent() {
         setDarkMode(!darkMode);
     };
 
-    const handleLogout = () => {
-        const confirmLogout = window.confirm('Are you sure you want to logout?');
-        if (confirmLogout) {
-
-            // Redirect to the login page
-            window.location.href = '/login';
-        }
-    };
-
     const scrollToAboutUs = () => {
         if (aboutUsRef.current) {
             window.scrollTo({
                 behavior: 'smooth',
                 top: aboutUsRef.current.offsetTop,
             });
+            setShowAboutUs(true);
         }
     };
 
+    const handleScroll = () => {
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        const scrollPosition = window.scrollY;
+
+        if (scrollPosition > documentHeight - windowHeight - 100) {
+            setShowAboutUs(true);
+        } else {
+            setShowAboutUs(false);
+        }
+    };
+
+    useEffect(() => {
+        const handleScrollUp = () => {
+            const scrollPosition = window.scrollY;
+
+            if (scrollPosition === 0) {
+                setShowAboutUs(false);
+            }
+        };
+
+        window.addEventListener('scroll', handleScrollUp);
+
+        return () => {
+            window.removeEventListener('scroll', handleScrollUp);
+        };
+    }, []);
+
+
     return (
         <div className={`App ${darkMode ? 'dark' : ''}`}>
-            <div className="title-bar">
-                <h1>Genome Sequencing</h1>
+            <nav className="navigation">
+                <ul className="navigation-list">
+                    <li>Home</li>
+                    <li>Data Visualization</li>
+                    <li onClick={scrollToAboutUs}>About Us</li>
+                </ul>
                 <label className="dark-mode-label">
-                    <span>Dark Mode</span>
+                    <span className="dark-mode-text">Dark Mode</span>
                     <Switch
                         onChange={toggleDarkMode}
                         checked={darkMode}
@@ -62,15 +93,14 @@ function MainContent() {
                         uncheckedIcon={false}
                     />
                 </label>
-            </div>
-            <nav className="navigation">
-                <ul>
-                    <li>Home</li>
-                    <li>Data Visualization</li>
-                    <li onClick={scrollToAboutUs}>About Us</li>
-                </ul>
             </nav>
-            <div className="file-upload">
+
+            <div className="genome-section">
+                <h1>Genome Sequencing</h1>
+                <p>Upload the genome sequence to determine the
+                    geographic origin of COVID-19 sample....
+                    <br />
+                    (basic introduction type ///NEED TO MAKE IT BETTER)</p>
                 <label className="upload-button">
                     <input
                         type="file"
@@ -80,32 +110,28 @@ function MainContent() {
                     />
                     <span>Select File</span>
                 </label>
-                {selectedFile && <p>Selected File: {selectedFile.name}</p>}
-                {fileContent && (
+                {selectedFile && fileContent !== '' && (
                     <div className={`file-content-box ${darkMode ? 'dark' : ''}`}>
                         <h3>Genome Sequence Uploaded</h3>
                         <div className={`file-content ${darkMode ? 'dark' : ''}`}>
                             <p>{fileContent}</p>
                         </div>
+                        <button className="predict-button">Predict Geographic Location</button>
                     </div>
                 )}
             </div>
-            <button onClick={handleLogout} className="logout-button">
-                Logout
-            </button>
+
 
             {/* About Us section */}
-            <div ref={aboutUsRef} className="about-us-section">
+            <div className={`about-us-section ${showAboutUs ? 'visible' : ''}`} ref={aboutUsRef}>
                 <h2>About Us</h2>
-                <h3>IIIT Hyderabad</h3>
                 <p>
                     Hi! We are Srujana Vanka and Jewel Benny, enthusiastic teammates at IIIT Hyderabad.
                     Our focus is on crafting an innovative AI/ML model and web application that accurately predicts sequence
                     origins or spread. With our collaborative efforts, we strive to make impactful contributions to the
-                    domains of bioinformatics and epidemiology.
+                    domains of bioinformatics and epidemiology. //NEED TO MAKE IT BETTER
                 </p>
             </div>
-
         </div>
     );
 }

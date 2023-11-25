@@ -11,9 +11,14 @@ function App() {
     setIsLoggedIn(true);
   };
 
+
   // Callback function to set the user as logged out
   const handleLogout = () => {
-    setIsLoggedIn(false);
+    const confirmLogout = window.confirm('Are you sure you want to logout?');
+    if (confirmLogout) {
+      setIsLoggedIn(false);
+      window.location.href = '/login';
+    }
   };
 
   return (

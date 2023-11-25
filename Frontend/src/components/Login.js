@@ -43,7 +43,7 @@ function Login({ onLogin }) {
         <div className="login-container">
             <div className="login-image-bg"></div>
             <div className="login-form">
-                <h2 className="login-heading">Sign In Now</h2>
+                <h2 className="login-heading">Let's get started!</h2>
                 <div className="divider d-flex align-items-center my-4"></div>
 
                 <div className="mb-4">

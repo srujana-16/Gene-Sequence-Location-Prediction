@@ -8,6 +8,11 @@
     align-items: center;
 }
 
+.login-heading {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 400;
+}
+
 .login-form {
     flex: 1;
     display: flex;
@@ -58,6 +63,8 @@
     border-radius: 8px;
     cursor: pointer;
     font-size: 18px;
+
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     margin-top: 12px;
 }
 
