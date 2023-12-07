@@ -4,6 +4,7 @@ import Switch from 'react-switch';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.css';
 import Chart from 'chart.js/auto';
+import { Link } from 'react-router-dom';
 
 function MainContent() {
     const [selectedFile, setSelectedFile] = useState(null);
@@ -14,6 +15,9 @@ function MainContent() {
     const [predictionData, setPredictionData] = useState(null);
     const [predictionClose, setPredictionClose] = useState(true);
     const [mostLikelyLocation, setMostLikelyLocation] = useState(null);
+    const [manualSequence, setManualSequence] = useState('');
+    const [typingMode, setTypingMode] = useState(false);
+
 
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
@@ -35,6 +39,17 @@ function MainContent() {
             };
             reader.readAsText(file);
         }
+        setTypingMode(false);
+    };
+
+
+    const handleFileContentChange = (e) => {
+        setFileContent(e.target.value);
+    };
+
+    // Enable typing mode
+    const handleTypeSequence = () => {
+        setTypingMode(true);
     };
 
     const scrollToAboutUs = () => {
@@ -154,7 +169,7 @@ function MainContent() {
             <nav className="navigation">
                 <ul className="navigation-list">
                     <li>Home</li>
-                    <li>Data Visualization</li>
+                    <li><Link to="/data-visualization">Data Visualization</Link></li>
                     <li onClick={scrollToAboutUs}>About Us</li>
                 </ul>
             </nav>
@@ -162,15 +177,34 @@ function MainContent() {
             <div className="genome-section">
                 <div className="genome-section-title">
                     Sequence Location Prediction
+                    <p className="genome-section-intro">
+                        Upload your sequence file to predict the location of origin of the sequence.
+                    </p>
                 </div>
                 {predictionClose && (
                     <div className={`file-content-box`}>
                         {(selectedFile && fileContent) ? (
-                            <h3> Sequence uploaded.</h3>) :
-                            (<h3> No file selected.</h3>
-                            )}
+                            <h3> Sequence uploaded.</h3>
+                        ) : (
+                            <h3> No file selected.</h3>
+                        )}
                         <div className={`file-content`}>
-                            <p>{fileContent}</p>
+                            {typingMode ? (
+                                <textarea
+                                    value={fileContent}
+                                    onChange={handleFileContentChange}
+                                    placeholder="Type your sequence here..."
+                                    style={{
+                                        width: '100%',
+                                        minHeight: '300px',
+                                        resize: 'none',
+                                        padding: '10px',
+                                        boxSizing: 'border-box',
+                                    }}
+                                />
+                            ) : (
+                                <p>{fileContent}</p>
+                            )}
                         </div>
                         <div className='button-wrapper'>
                             <button className="predict-button" onClick={handlePredict}>Predict Location</button>
@@ -183,9 +217,11 @@ function MainContent() {
                                 />
                                 <span>Select File</span>
                             </label>
+                            <button className="type-sequence-button" onClick={handleTypeSequence}>Type the Sequence</button>
                         </div>
                     </div>
                 )}
+
 
                 {predictionData && !predictionClose && (
                     <div className={`prediction-box`}>
@@ -204,6 +240,7 @@ function MainContent() {
                 )}
 
             </div>
+
             {/*    
             <div className={`about-us-section ${showAboutUs ? 'visible' : ''}`} ref={aboutUsRef}>
                 <h2>About Us</h2>
@@ -220,3 +257,5 @@ function MainContent() {
 }
 
 export default MainContent;
+
+
