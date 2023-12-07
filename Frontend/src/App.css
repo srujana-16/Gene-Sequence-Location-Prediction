@@ -1,67 +1,41 @@
+@font-face {
+	font-family: Centra;
+	src: url('./assets/font/CentraNo2-Bold.ttf');
+	font-weight: 700;
+}
+@font-face {
+	font-family: Centra;
+	src: url('./assets/font/CentraNo2-Medium.ttf');
+	font-weight: 500;
+}
+@font-face {
+	font-family: Centra;
+	src: url('./assets/font/CentraNo2-Book.ttf');
+	font-weight: 400;
+}
+
 /* Reset some default styles */
 #root {
   margin: 0;
   width: 100%;
   height: 100vh;
-  font-family: 'Times New Roman', Times, serif, sans-serif;
+  font-family: Centra;
   display: 'flex'
 }
 
 /* Basic app styles */
 .App {
-  background-color: #f2f2f2;
-  color: #333;
-  transition: background-color 0.3s, color 0.3s;
-  background-image: url('./main.jpg');
+  background-image: url('../public/main_bg.png');
   background-size: cover;
-  background-repeat: no-repeat;
   text-align: center;
   padding: 20px;
   height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
-
-/* Dark mode styles */
-.App.dark {
-  background-color: #333;
-  color: #fff;
-}
-
-/* Title bar styles */
-/* .title-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  padding: 10px;
-  color: #fff;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-  justify-content: space-between;
-}
-
-.title-bar h1 {
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif, sans-serif;
-  font-size: 1.5rem;
-  margin: 0;
-}
-
-.title-bar button {
-  background-color: transparent;
-  border: none;
-  color: #fff;
-  cursor: pointer;
-  font-family: 'Arial', sans-serif;
-  font-weight: bold;
-  font-size: 0.5rem;
-  text-transform: uppercase;
-  margin-left: 1px;
-} */
-
-/* .title-bar button:hover {
-  text-decoration: none;
-} */
 
 /* Navigation section styles */
 .navigation {
@@ -69,6 +43,9 @@
   justify-content: space-between;
   align-items: center;
   margin-top: 20px;
+  position: relative;
+  left: 35%;
+
 }
 
 .navigation-list {
@@ -83,21 +60,7 @@
   margin-right: 20px;
   cursor: pointer;
   font-weight: bold;
-  text-transform: uppercase;
-  font-family: 'Arial', sans-serif;
-  font-size: 0.9rem;
-  color: #646161;
-}
-
-.dark-mode-label {
-  display: flex;
-  align-items: center;
-  margin-left: auto;
-}
-
-.dark-mode-text {
-  margin-right: 8px;
-  font-weight: bold;
+  font-family: Centra;
   font-size: 0.9rem;
   color: #646161;
 }
@@ -122,26 +85,37 @@
 
 /* main content styles */
 .genome-section {
+
+  position: absolute;
+  top: 40px;
   text-align: left;
   margin-top: 60px;
   width: 94%;
   margin-left: 20px;
 }
 
-.genome-section h1 {
-  font-size: 5.2rem;
+.genome-section-title {
+  font-size: 4.2rem;
   margin-bottom: 7px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: Centra;
   font-weight: 400;
-  text-transform: uppercase;
+  color: white;
 }
 
 .genome-section p {
   font-size: 1.2rem;
   margin-bottom: 20px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: Centra;
+  color: white;
 }
 
+.button-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto;
+  width: 40%;
+}
 
 /* Upload button styles */
 .file-upload {
@@ -158,10 +132,11 @@
   cursor: pointer;
   border-radius: 4px;
   transition: background-color 0.3s;
-  font-family: 'Arial', sans-serif;
+  font-family: Centra;
   font-weight: bold;
   font-size: 1rem;
-  text-transform: uppercase;
+  margin: auto;
+  height: 50px;
 }
 
 .upload-button:hover {
@@ -175,7 +150,7 @@
 
 .file-upload p {
   margin-top: 10px;
-  font-family: 'Arial', sans-serif;
+  font-family: Centra;
   font-weight: bold;
   font-size: 1rem;
 }
@@ -186,59 +161,122 @@
   padding: 15px;
   margin-top: 20px;
   background-color: #f9f9f9;
+  height: 490px;
+  border-radius: 15px;
+  border: none;
 }
 
-.file-content-box.dark {
-  background-color: #4a4a4a;
-}
 
 .file-content-box h3 {
   font-size: 1.2em;
-  margin-bottom: 10px;
+  margin: 10px;
   color: #535252;
 }
 
-.file-content-box.dark h3 {
-  color: #eee;
-}
-
 .file-content {
-  white-space: pre-line;
+  position: relative;
+  white-space: initial;
+  word-wrap: break-word;
   font-size: 14px;
   line-height: 1.5;
   color: #333;
+  margin: 20px;
+  height: 320px;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
-.file-content.dark {
-  color: #eee;
+.file-content p {
+  color: #333;
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 /* CSS for Predict Button */
 .predict-button {
-  display: block;
-  width: 200px; 
-  margin: 20px auto;
-  padding: 10px;
+  display: inline-block;
   background-color: #132154;
   color: #fff;
-  font-weight: bold;
-  text-align: center;
-  border: none;
-  border-radius: 5px;
+  padding: 12px 24px;
   cursor: pointer;
-  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+  font-family: Centra;
+  font-weight: bold;
+  font-size: 1rem;
+  margin: auto;
+  height: 50px;
 }
 
+/* File list styles */
+.prediction-box {
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin-top: 20px;
+  background-color: #f9f9f9;
+  color: #333;
+  height: 490px;
+  border-radius: 15px;
+  border: none;
+}
+
+.prediction-content {
+  white-space: pre-line;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #333;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.prediction-content p {
+  color: #333;
+  margin: 10px;
+}
+
+.prediction-title-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px;
+}
+
+.prediction-chart {
+
+  position: relative;
+  width: 55%;
+  height:370px;
+  margin: 10px;
+  margin-right: 10px;
+  left: -20px;
+  justify-self: center;
+  top: -40px;
+  display: inline-block;
+}
 .predict-button:hover {
   background: linear-gradient(to bottom, #0056b3, #042743);
   transform: scale(1.02);
 }
 
+.prediction-text {
+  width: 30%;
+  display: inline-block;
+  position: relative;
+  font: Centra;
+  font-size: 2.6rem;
+  font-weight: bold;
+  color: #042743;
+  margin: 10px;
+  margin-left: 50px;
+  top: -40px;
+}
 
 /* About us section */
 .about-us-section {
   display: none;
-  position: fixed;
+  position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
@@ -260,26 +298,10 @@
   font-size: 1.4em;
   color: #6e6d6d;
   font-weight: 400;
-  text-transform: uppercase;
 }
 
 .about-us-section p {
   line-height: 1.2;
   color: #383737;
   font-size: 1.2em;
-}
-
-/* Dark mode */
-.App.dark .about-us-section {
-  background-color: #515050;
-  color: #bbbaba;
-}
-
-.App.dark .about-us-section h2 {
-  color: #bbbaba;
-}
-
-.App.dark .about-us-section p {
-  color: #bbbaba;
-
 }
