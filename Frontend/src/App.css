@@ -1,17 +1,19 @@
 @font-face {
-	font-family: Centra;
-	src: url('./assets/font/CentraNo2-Bold.ttf');
-	font-weight: 700;
+  font-family: Centra;
+  src: url('./assets/font/CentraNo2-Bold.ttf');
+  font-weight: 700;
 }
+
 @font-face {
-	font-family: Centra;
-	src: url('./assets/font/CentraNo2-Medium.ttf');
-	font-weight: 500;
+  font-family: Centra;
+  src: url('./assets/font/CentraNo2-Medium.ttf');
+  font-weight: 500;
 }
+
 @font-face {
-	font-family: Centra;
-	src: url('./assets/font/CentraNo2-Book.ttf');
-	font-weight: 400;
+  font-family: Centra;
+  src: url('./assets/font/CentraNo2-Book.ttf');
+  font-weight: 400;
 }
 
 /* Reset some default styles */
@@ -99,7 +101,14 @@
   margin-bottom: 7px;
   font-family: Centra;
   font-weight: 400;
-  color: white;
+  color: rgb(210, 207, 207);
+}
+
+.genome-section-intro {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  font-family: Centra;
+  color: rgb(209, 209, 209);
 }
 
 .genome-section p {
@@ -153,6 +162,26 @@
   font-family: Centra;
   font-weight: bold;
   font-size: 1rem;
+}
+
+.type-sequence-button {
+  display: inline-block;
+  background-color: #132154;
+  color: #fff;
+  padding: 12px 24px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+  font-family: Centra;
+  font-weight: bold;
+  font-size: 1rem;
+  margin: auto;
+  height: 50px;
+}
+
+.type-sequence-button:hover {
+  background: linear-gradient(to bottom, #042743, #0056b3);
+  transform: scale(1.02);
 }
 
 /* File list styles */
@@ -247,7 +276,7 @@
 
   position: relative;
   width: 55%;
-  height:370px;
+  height: 370px;
   margin: 10px;
   margin-right: 10px;
   left: -20px;
@@ -255,6 +284,7 @@
   top: -40px;
   display: inline-block;
 }
+
 .predict-button:hover {
   background: linear-gradient(to bottom, #0056b3, #042743);
   transform: scale(1.02);
