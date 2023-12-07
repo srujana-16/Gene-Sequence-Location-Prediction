@@ -8,24 +8,28 @@ from fastapi import FastAPI, File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, HTMLResponse, FileResponse
 from fastapi.staticfiles import StaticFiles
+from Bio import SeqIO
+from io import StringIO
 
 MODEL_PATH = os.path.join(os.getcwd(), "../Testing and Research/Model files")
 FRONTEND_PATH = os.path.join(os.getcwd(), "../Frontend/build")
 
 # load the model and vectorizer
-#with open(os.path.join(MODEL_PATH, "count_vectorizer_state_ut.pkl"), "rb") as f:
-#    cv = pickle.load(f)
-
-# load the model and vectorizer
-with open(os.path.join(MODEL_PATH, "count_vectorizer.pkl"), "rb") as f:
+with open(os.path.join(MODEL_PATH, "count_vectorizer_state_ut.pkl"), "rb") as f:
     cv = pickle.load(f)
 
-#with open(os.path.join(MODEL_PATH, "random_forest_classifier_state.pkl"), "rb") as f:
-#    rf = pickle.load(f)
+# load the count vectorizer for tokenizing the sequence
+#with open(os.path.join(MODEL_PATH, "count_vectorizer.pkl"), "rb") as f:
+#    cv = pickle.load(f)
 
-with open(os.path.join(MODEL_PATH, "random_forest_classifier.pkl"), "rb") as f:
+with open(os.path.join(MODEL_PATH, "random_forest_classifier_state.pkl"), "rb") as f:
     rf = pickle.load(f)
 
+# random forest classifier for predicting the state or union territory
+#with open(os.path.join(MODEL_PATH, "random_forest_classifier.pkl"), "rb") as f:
+#    rf = pickle.load(f)
+
+# convert the sequence into kmers of size 3 to be used as features
 def getKmers(sequence, size=3):
     seq = [sequence[x:x + size].lower() for x in range(len(sequence) - size + 1)]
     n_str = "n"*size
@@ -33,8 +37,11 @@ def getKmers(sequence, size=3):
     seq = " ".join(seq)
     return seq
 
+# initialize the FastAPI app
 app = FastAPI()
 app.mount("/static", StaticFiles(directory=FRONTEND_PATH), name="static")
+
+# allow CORS so that cross-origin requests can be made
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -42,17 +49,34 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# this route is used to serve the React app
 @app.get("/")
 async def home_page():
     return open(os.path.join(FRONTEND_PATH, "index.html")).read()
 
+# receives a file from the frontend and runs the model on it
 @app.post("/send_seq")
 async def read_seq(file: UploadFile = File(...)):
-    seq = file.file.read()
-    # save the file
-    #with open("seq.txt", "wb") as f:
-    #    f.write(seq)
-    seq = seq.decode("utf-8")
+    
+    # if the file is a text file, read it as a string
+    if file.filename.endswith(".txt"):
+        seq = file.file.read()
+        seq = seq.decode("utf-8")
+
+    # if the file is a fasta file, read it as a string and then treat it as a fasta file
+    elif file.filename.endswith(".fasta"):
+        i = 0
+        fasta = file.file.read()
+        fasta = fasta.decode("utf-8")
+        fasta = StringIO(fasta)
+        for record in SeqIO.parse(fasta, "fasta"):
+            if i == 0:
+                seq = str(record.seq)
+                i += 1
+            else:
+                break
+    
+    # run the model on the sequence and return the top states with non-zero probabilities
     seq_kmer = getKmers(seq)
     seq_kmer = cv.transform([seq_kmer]).toarray()
     pred_top10 = rf.predict_proba(seq_kmer)[0]
