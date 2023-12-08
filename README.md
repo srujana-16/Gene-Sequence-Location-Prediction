@@ -16,7 +16,7 @@ Make sure you have the following software installed on your local machine:
 These instructions will help you run the application using Docker. If you prefer to run it locally, please skip to the "Local Development" section.
 
 - Clone this directory and move to its root using `cd AI-Model-Training-Deployment-Genome-Sequencing_Girlgenius/`
-- Run ` cd Frontend/`
+- Run `cd Frontend/`
 - Build the Docker images for the frontend and backend by running `docker-compose build`
 - After the images are successfully built, you can run the application using `docker-compose up`
 - Docker Compose will start the frontend and backend containers, and the application will be accessible at the following URL: [http://localhost:3000](http://localhost:3000)
@@ -29,7 +29,8 @@ Note - Running Docker with `sudo` can be necessary if your user doesn't have the
 If you want to run the application locally without Docker for development purposes:
 
 - Clone this directory and move to its root using `cd AI-Model-Training-Deployment-Genome-Sequencing_Girlgenius/` 
-- Run ` cd Frontend/`
+- Run `cd Frontend/`
+- Run `npm install` to install all the dependencies to run the application.
 - Then run `npm start` to run the app in the development mode.
 - Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
