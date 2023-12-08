@@ -186,6 +186,7 @@ function MainContent() {
                 <ul className="navigation-list">
                     <li>Home</li>
                     <li><Link to="/data-visualization">Data Visualization</Link></li>
+                    <li><Link to="/compare-sequences">Compare Sequences</Link></li>
                     <li onClick={scrollToAboutUs}>About Us</li>
                 </ul>
             </nav>
