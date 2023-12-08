@@ -5,6 +5,7 @@ import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.css';
 import Chart from 'chart.js/auto';
 import { Link } from 'react-router-dom';
+import MapComponent from './components/MapComponent';
 
 function MainContent() {
     const [selectedFile, setSelectedFile] = useState(null);
@@ -45,11 +46,14 @@ function MainContent() {
 
     const handleFileContentChange = (e) => {
         setFileContent(e.target.value);
+        setSelectedFile(null);
     };
 
     // Enable typing mode
-    const handleTypeSequence = () => {
+    const handleTypeSequence = () => {        
         setTypingMode(true);
+        setSelectedFile(null);
+        setFileContent('');
     };
 
     const scrollToAboutUs = () => {
@@ -75,10 +79,21 @@ function MainContent() {
     };
 
     const handlePredict = async () => {
-        if (selectedFile) {
+        if (selectedFile || typingMode) {
             try {
                 const formData = new FormData();
-                formData.append('file', selectedFile);
+
+                if (selectedFile) {
+                    formData.append('file', selectedFile);
+                }
+                else if (typingMode) {
+                    
+                    const Content = document.querySelector('.file-content textarea').value;
+                    setFileContent(Content);
+                    setManualSequence(fileContent);
+                    const file = new File([Content], 'manualSequence.txt', { type: 'text/plain' });
+                    formData.append('file', file);
+                }
 
                 const response = await axios.post('http://localhost:8000/send_seq', formData);
                 const prediction = response.data;
@@ -87,12 +102,13 @@ function MainContent() {
                 setPredictionData(prediction);
                 setPredictionClose(false);
                 const labels = Object.keys(prediction);
-                mostLikelyLocation = labels[0];
-                console.log(mostLikelyLocation);
+                setMostLikelyLocation(labels[0]);
+                //console.log(mostLikelyLocation);
 
             } catch (error) {
                 console.error('Error:', error);
             }
+
         } else {
             console.error('No file selected');
         }
@@ -143,7 +159,7 @@ function MainContent() {
                     maintainAspectRatio: false,
                     plugins: {
                         legend: {
-                            position: 'right'
+                            position: 'bottom'
                         }
                     }
                 }
@@ -154,9 +170,9 @@ function MainContent() {
 
     // log predictionData
     useEffect(() => {
-        // This will run every time predictionData changes
-        console.log("Prediction Data has been updated:", predictionData);
         if (predictionData && !predictionClose) {
+            // This will run every time predictionData changes
+            console.log("Prediction Data has been updated:", predictionData);
             createChart();
             const labels = Object.keys(predictionData);
             setMostLikelyLocation(labels[0]);
@@ -188,6 +204,7 @@ function MainContent() {
                         ) : (
                             <h3> No file selected.</h3>
                         )}
+
                         <div className={`file-content`}>
                             {typingMode ? (
                                 <textarea
@@ -234,6 +251,9 @@ function MainContent() {
                             </div>
                             <div className="prediction-text">
                                 Your sample is most likely from {mostLikelyLocation}.
+                            </div>
+                            <div className="prediction-map">
+                                <MapComponent location={mostLikelyLocation} />
                             </div>
                         </div>
                     </div>

@@ -275,13 +275,11 @@
 .prediction-chart {
 
   position: relative;
-  width: 55%;
-  height: 370px;
-  margin: 10px;
-  margin-right: 10px;
-  left: -20px;
+  width: 40%;
+  height: 380px;
+  margin: auto;
   justify-self: center;
-  top: -40px;
+  top: -30px;
   display: inline-block;
 }
 
@@ -291,16 +289,25 @@
 }
 
 .prediction-text {
-  width: 30%;
+  width: 25%;
   display: inline-block;
   position: relative;
   font: Centra;
   font-size: 2.6rem;
   font-weight: bold;
   color: #042743;
+  margin: auto;
+  top: -50px;
+}
+
+.prediction-map {
+  position: relative;
+  width: 35%;
+  height: 370px;
   margin: 10px;
-  margin-left: 50px;
-  top: -40px;
+  justify-self: center;
+  top: -30px;
+  display: inline-block;
 }
 
 /* About us section */
