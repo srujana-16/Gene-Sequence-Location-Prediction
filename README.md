@@ -3,21 +3,24 @@
 ## Aim
 To develop and deploy an AI/ML model/web app that is capable of accurately predicting from which location a particular sequence originated or spread from.​
 
-## Prerequisites
+## Getting Started
+### Prerequisites
 
 Make sure you have the following software installed on your local machine:
 
 - [Docker](https://docs.docker.com/get-docker/)
 - [Node.js](https://nodejs.org/) (only if you want to run the application locally without Docker)
 
-## Getting Started
+### Running the Application with Docker
 
 These instructions will help you run the application using Docker. If you prefer to run it locally, please skip to the "Local Development" section.
 
-- Clone this directory and move to its root using `cd AI-Model-Training-Deployment-Genome-Sequencing_Girlgenius/` 
+- Clone this directory and move to its root using `cd AI-Model-Training-Deployment-Genome-Sequencing_Girlgenius/`
 - Run ` cd Frontend/`
-- Build the Docker image: `sudo docker build -t your-docker-image-name .`
-- Run the Docker container: `sudo docker run -p 3000:3000 your-docker-image-name`
+- Build the Docker images for the frontend and backend by running `docker-compose build`
+- After the images are successfully built, you can run the application using `docker-compose up`
+- Docker Compose will start the frontend and backend containers, and the application will be accessible at the following URL: [http://localhost:3000](http://localhost:3000)
+- To stop the application and shut down the containers, press `Ctrl + C` in the terminal where Docker Compose is running.
 
 Note - Running Docker with `sudo` can be necessary if your user doesn't have the necessary permissions to interact with Docker.
 
