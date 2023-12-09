@@ -185,7 +185,7 @@ function MainContent() {
                 <ul className="navigation-list">
                     <li><Link to="/data-visualization" className="link-without-underline">Data Visualization</Link></li>
                     <li><Link to="/compare-sequences" className="link-without-underline">Compare Sequences</Link></li>
-                    <li><Link to="/about-us" className="link-without-underline">About Us</Link></li>
+                    {/*<li><Link to="/about-us" className="link-without-underline">About Us</Link></li>*/}
                 </ul>
             </nav>
 

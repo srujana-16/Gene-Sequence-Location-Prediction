@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './Login.css';
+import '../assets/img/iiit_logo.png';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Login({ onLogin }) {
     const [firstName, setFirstName] = useState('');
@@ -40,6 +42,18 @@ function Login({ onLogin }) {
     };
 
     return (
+        <div>
+        <div className="iiit-logo">
+        <img src={require('../assets/img/iiit_logo.png') } alt="IIIT Logo" style = {
+            {
+                width: 250,
+                height: 250,
+                marginLeft: 20,
+                marginTop: 500,
+
+            }
+        }/>
+        </div>
         <div className="log-form">
             <h2>Let's get started!</h2>
             <form>
@@ -77,6 +91,7 @@ function Login({ onLogin }) {
                     </button>
                 </div>
             </form>
+        </div>
         </div>
     );
 }

@@ -122,8 +122,8 @@ async def align_seq(file1: UploadFile = File(...), file2: UploadFile = File(...)
                 break
 
     aligner = PairwiseAligner()
-    aligner.open_gap_score = -2
-    aligner.extend_gap_score = -1
+    aligner.open_gap_score = -200
+    aligner.extend_gap_score = -50
     alignments = aligner.align(seq1, seq2)
     best_alignment = alignments[0]
     return {"score": best_alignment.score}

@@ -106,7 +106,7 @@
   font-size: 4.2rem;
   margin-bottom: 7px;
   font-family: Centra;
-  font-weight: 400;
+  font-weight: 500;
   color: #042743;
 }
 
@@ -153,6 +153,7 @@
   font-size: 1rem;
   margin: auto;
   height: 50px;
+  min-width: 140px;
 }
 
 .upload-button:hover {
@@ -186,6 +187,7 @@
   font-size: 1rem;
   margin: auto;
   height: 50px;
+  min-width: 160px;
 }
 
 .type-sequence-button:hover {

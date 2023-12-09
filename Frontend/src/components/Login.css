@@ -1,12 +1,27 @@
-/* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700|Open+Sans:400,300,600');
+@font-face {
+    font-family: Centra;
+    src: url('../assets/font/CentraNo2-Bold.ttf');
+    font-weight: 700;
+  }
+  
+  @font-face {
+    font-family: Centra;
+    src: url('../assets/font/CentraNo2-Medium.ttf');
+    font-weight: 500;
+  }
+  
+  @font-face {
+    font-family: Centra;
+    src: url('../assets/font/CentraNo2-Book.ttf');
+    font-weight: 400;
+  }
 
 * {
     box-sizing: border-box;
 }
 
 body {
-    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+    font-family: 'Centra', sans-serif;
     background-image: url('../../public/main_bg.png');
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -24,6 +39,7 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
+    border-radius: 12px;
 }
 
 .log-form form {
@@ -35,16 +51,17 @@ body {
 
 .log-form h2 {
     width: 100%;
-    color: #d8cece;
-    font-family: 'Open Sans Condensed', sans-serif;
+    color: #fff;
+    font-weight: 700 !important;
+    font-family: Centra;
     font-size: 1.35em;
     display: block;
-    background: #2a2a2a;
+    background: #0056b3;
     width: 100%;
     text-transform: uppercase;
     padding: 0.75em 1em 0.75em 1.5em;
-    box-shadow: inset 0px 1px 1px rgba(255, 255, 255, 0.95);
-    border: 1px solid #242424;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
+    border-radius: 12px 12px 0px 0px;
     margin: 0;
     font-weight: 200;
 }
@@ -54,27 +71,35 @@ body {
     margin: auto auto;
     width: 100%;
     margin-bottom: 2em;
-    padding: 0.5em 0;
+    padding: 0.5em;
     border: none;
     border-bottom: 1px solid #eaeaea;
     padding-bottom: 1.25em;
     color: #757575;
+    justify-content: center;
+}
+
+.log-form input:focus {
+    outline: none;
+    background-color: none;
 }
 
 .log-form .btn {
     position: absolute;
     top: 80%;
     left: 43%;
-    padding: 9px 16px;
-    background-color: #007bff;
+    padding: 7px 14px;
+    background-color: #0056b3;
+    border: #0056b3 solid 2px;
     color: white;
-    border: none;
     border-radius: 5px;
     cursor: pointer;
     z-index: 100;
+    transition: background-color 0.2s ease-out;
 }
 
 .log-form .btn:hover {
-    background: linear-gradient(to bottom, #007bff, #0056b3);
-    transform: scale(1.02);
+    background: none;
+    border: #0056b3 solid 2px;
+    color: #0056b3;
 }
