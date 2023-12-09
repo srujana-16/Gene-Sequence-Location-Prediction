@@ -10,6 +10,7 @@ from fastapi.responses import JSONResponse, HTMLResponse, FileResponse
 from fastapi.staticfiles import StaticFiles
 from Bio import SeqIO
 from io import StringIO
+from Bio.Align import PairwiseAligner
 
 MODEL_PATH = os.path.join(os.getcwd(), "../Testing and Research/Model files")
 FRONTEND_PATH = os.path.join(os.getcwd(), "../Frontend/build")
@@ -86,6 +87,46 @@ async def read_seq(file: UploadFile = File(...)):
     top_states = [x for x in top10 if x[1] > 0]
     top_states = dict(top_states)
     return top_states
+
+@app.post("/align_seq")
+async def align_seq(file1: UploadFile = File(...), file2: UploadFile = File(...)):
+    # if the file is a text file, read it as a string
+    if file1.filename.endswith(".txt"):
+        seq1 = file1.file.read()
+        seq1 = seq1.decode("utf-8")
+    elif file1.filename.endswith(".fasta"):
+        i = 0
+        fasta = file1.file.read()
+        fasta = fasta.decode("utf-8")
+        fasta = StringIO(fasta)
+        for record in SeqIO.parse(fasta, "fasta"):
+            if i == 0:
+                seq1 = str(record.seq)
+                i += 1
+            else:
+                break
+
+    if file2.filename.endswith(".txt"):
+        seq2 = file2.file.read()
+        seq2 = seq2.decode("utf-8")
+    elif file2.filename.endswith(".fasta"):
+        i = 0
+        fasta = file2.file.read()
+        fasta = fasta.decode("utf-8")
+        fasta = StringIO(fasta)
+        for record in SeqIO.parse(fasta, "fasta"):
+            if i == 0:
+                seq2 = str(record.seq)
+                i += 1
+            else:
+                break
+
+    aligner = PairwiseAligner()
+    aligner.open_gap_score = -2
+    aligner.extend_gap_score = -1
+    alignments = aligner.align(seq1, seq2)
+    best_alignment = alignments[0]
+    return {"score": best_alignment.score}
     
 if __name__ == "__main__":
     app.run(debug=True)

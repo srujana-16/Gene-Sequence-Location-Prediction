@@ -1,0 +1,358 @@
+@font-face {
+  font-family: Centra;
+  src: url('../assets/font/CentraNo2-Bold.ttf');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: Centra;
+  src: url('../assets/font/CentraNo2-Medium.ttf');
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: Centra;
+  src: url('../assets/font/CentraNo2-Book.ttf');
+  font-weight: 400;
+}
+
+/* Reset some default styles */
+#root {
+  margin: 0;
+  width: 100%;
+  height: 100vh;
+  font-family: Centra;
+  display: 'flex'
+}
+/* Basic app styles */
+.App {
+  background-image: url('../../public/main_bg.png');
+  background-size: cover;
+  text-align: center;
+  padding: 20px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+/* Navigation section styles */
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 28px;
+  position: relative;
+  left: 32%;
+
+}
+
+.navigation-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  text-decoration: none !important;
+}
+
+.navigation-list li {
+  margin-right: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  font-family: Centra;
+  font-size: 0.9rem;
+  color: #646161;
+  text-decoration: none !important;
+}
+
+.link-without-underline {
+  text-decoration: none !important;
+}
+
+/* Logout button styles */
+.logout-button {
+  position: absolute;
+  top: 35px;
+  right: 20px;
+  padding: 9px 16px;
+  background-color: #007bff;  
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform .1s ease-in-out;
+  z-index: 100;
+}
+
+.logout-button:hover {
+  background: linear-gradient(to bottom, #007bff, #0056b3);
+  transform: scale(1.02);
+}
+
+/* main content styles */
+.genome-section {
+
+  position: absolute;
+  text-align: left;
+  margin-top: 60px;
+  width: 94%;
+  margin-left: 20px;
+}
+
+.genome-section-title {
+  font-size: 4.2rem;
+  margin-bottom: 7px;
+  font-family: Centra;
+  font-weight: 400;
+  color: #042743;
+}
+
+.genome-section-intro {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  font-family: Centra;
+  color: #042743;
+}
+
+.genome-section p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  font-family: Centra;
+  color: #042743;
+}
+
+.button-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto;
+  width: 40%;
+}
+
+/* Upload button styles */
+.file-upload {
+  align-self: flex-start;
+  text-align: left;
+  margin-top: 90px;
+}
+
+.upload-button {
+  display: inline-block;
+  background-color: #0056b3;
+  border: solid #0056b3 2px;
+  color: #fff;
+  padding: 12px 24px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+  font-family: Centra;
+  font-weight: bold;
+  font-size: 1rem;
+  margin: auto;
+  height: 50px;
+}
+
+.upload-button:hover {
+  background: none;
+  border: #0056b3 solid 2px;
+  color: #0056b3;
+}
+
+.upload-button input[type="file"] {
+  display: none;
+}
+
+.file-upload p {
+  margin-top: 10px;
+  font-family: Centra;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.type-sequence-button {
+  display: inline-block;
+  background-color: #0056b3;
+  border: solid #0056b3 2px;
+  color: #fff;
+  padding: 12px 24px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+  font-family: Centra;
+  font-weight: bold;
+  font-size: 1rem;
+  margin: auto;
+  height: 50px;
+}
+
+.type-sequence-button:hover {
+  background: none;
+  border: #0056b3 solid 2px;
+  color: #0056b3;
+}
+
+/* File list styles */
+.file-content-box {
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin-top: 20px;
+  background-color: #fff;
+  height: 490px;
+  border-radius: 15px;
+  border: none;
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.3);
+}
+
+
+.file-content-box h3 {
+  font-size: 1.2em;
+  margin: 10px;
+  color: #535252;
+}
+
+.file-content {
+  position: relative;
+  white-space: initial;
+  word-wrap: break-word;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #333;
+  margin: 20px;
+  height: 320px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.file-content p {
+  color: #333;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+/* CSS for Predict Button */
+.predict-button {
+  display: inline-block;
+  background-color: #0056b3;
+  border: solid #0056b3 2px;
+  color: #fff;
+  padding: 12px 24px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+  font-family: Centra;
+  font-weight: bold;
+  font-size: 1rem;
+  margin: auto;
+  height: 50px;
+}
+
+/* File list styles */
+.prediction-box {
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin-top: 20px;
+  background-color: #fff;
+  color: #333;
+  height: 490px;
+  border-radius: 15px;
+  border: none;
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.3);
+}
+
+.prediction-content {
+  white-space: pre-line;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #333;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.prediction-content p {
+  color: #333;
+  margin: 10px;
+}
+
+.prediction-title-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px;
+}
+
+.prediction-chart {
+
+  position: relative;
+  width: 40%;
+  height: 380px;
+  margin: auto;
+  justify-self: center;
+  top: -30px;
+  display: inline-block;
+}
+
+.predict-button:hover {
+  background: none;
+  border: #0056b3 solid 2px;
+  color: #0056b3;
+}
+
+.prediction-text {
+  width: 25%;
+  display: inline-block;
+  position: relative;
+  font: Centra;
+  font-size: 2.6rem;
+  font-weight: bold;
+  color: #042743;
+  margin: auto;
+  top: -50px;
+}
+
+.prediction-map {
+  position: relative;
+  width: 35%;
+  height: 370px;
+  margin: 10px;
+  justify-self: center;
+  top: -30px;
+  display: inline-block;
+}
+
+/* About us section */
+.about-us-section {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(229, 229, 229, 0.6);
+  border: 2px solid #aeadad;
+  padding: 5px;
+  box-sizing: border-box;
+  color: #1b1b1b;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  transition: bottom 0.3s ease;
+}
+
+.about-us-section.visible {
+  display: block;
+}
+
+.about-us-section h2 {
+  margin-bottom: 10px;
+  font-size: 1.4em;
+  color: #6e6d6d;
+  font-weight: 400;
+}
+
+.about-us-section p {
+  line-height: 1.2;
+  color: #383737;
+  font-size: 1.2em;
+}

@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import './App.css';
+import './components/App.css';
 import Login from './components/Login';
-import MainContent from './MainContent';
-import DataVisualization from './dataVisualization/DataVisualization';
-import CompareSequences from './compareSequence/CompareSequences';
+import MainContent from './components/MainContent';
+import DataVisualization from './components/DataVisualization';
+import CompareSequences from './components/CompareSequences';
+import AboutUs from './components/AboutUs';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
             </Route>
             <Route exact path="/data-visualization" component={DataVisualization} />
             <Route exact path="/compare-sequences" component={CompareSequences} />
+            <Route exact path="/about-us" component={AboutUs} />
           </Switch>
         </div>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

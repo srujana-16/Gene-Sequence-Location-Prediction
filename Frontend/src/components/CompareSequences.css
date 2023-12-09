@@ -1,0 +1,165 @@
+/* Styles specific to CompareSequences component */
+
+.compare-genome-section {
+    position: absolute;
+    text-align: left;
+    width: 94%;
+    margin: 0;
+    margin-left: 20px;
+    height: 60%;
+}
+
+.compare-genome-section-title {
+    font-size: 4.2rem;
+    margin-bottom: 7px;
+    font-family: Centra;
+    font-weight: 400;
+    color: #042743;
+}
+
+.compare-genome-section-intro {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    font-family: Centra;
+    color: #042743;
+}
+
+.compare-genome-section p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    font-family: Centra;
+    color: #042743;
+}
+
+.compare-sections {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: auto;
+    width: auto;
+    background-color: #fff;
+    border-radius: 15px;
+    border: none;
+    height: 560px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.compare-file-content-box {
+    position: relative;
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin: auto;
+    margin-top: 10px;
+    margin-left: 20px;
+    background-color: #fff;
+    border-radius: 15px;
+    border: none;
+    width: 48%;
+    height: 440px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 0px;
+
+}
+
+.compare-file-content-box h3 {
+    font-size: 1.2em;
+    margin: 10px;
+    color: #535252;
+}
+
+.compare-file-content {
+    position: relative;
+    white-space: initial;
+    word-wrap: break-word;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #333;
+    white-space: pre-wrap;
+    margin: 10px;
+    height: 75%;
+    overflow-x: hidden;
+    overflow-y: auto;   
+    top: -10%; 
+}
+
+.compare-file-content p {
+    color: #333;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+.compare-upload-button {
+    display: inline-block;
+    bottom: 10px;
+    left: 42%;
+    background-color: #0056b3;
+    border: solid #0056b3 2px;
+    color: #fff;
+    padding: 12px 24px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+    font-family: Centra;
+    font-weight: bold;
+    font-size: 1rem;
+    height: 50px;
+    margin: 10px;
+    width: 140px;
+    justify-content: center;
+}
+
+.compare-button {
+    display: inline-block;
+    background-color: #0056b3;
+    border: solid #0056b3 2px;
+    color: #fff;
+    padding: 12px 24px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+    font-family: Centra;
+    font-weight: bold;
+    font-size: 1rem;
+    height: 50px;
+    margin: 10px;
+    width: 210px;
+}
+
+.compare-score-box {
+    position: relative;
+    margin: auto;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 400px;
+    top: -140px;
+    align-items: center;
+}
+
+.compare-button-wrapper {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin: auto;
+    top: -155px;
+}
+
+.compare-button:hover {
+    background: none;
+    border: #0056b3 solid 2px;
+    color: #0056b3;
+}
+
+.compare-upload-button:hover {
+    background: none;
+    border: #0056b3 solid 2px;
+    color: #0056b3;
+}
+
+.compare-upload-button input[type="file"] {
+    display: none;
+}
+
