@@ -3,8 +3,8 @@ import axios from 'axios';
 import './Login.css';
 
 function Login({ onLogin }) {
-    const [first_name, setFirstName] = useState('');
-    const [last_name, setLastName] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [emailError, setEmailError] = useState('');
 
@@ -28,7 +28,7 @@ function Login({ onLogin }) {
     };
 
     const handleLogin = () => {
-        if (first_name && last_name && email) {
+        if (firstName && lastName && email) {
             if (isEmailValid(email)) {
                 onLogin();
             } else {
@@ -40,32 +40,43 @@ function Login({ onLogin }) {
     };
 
     return (
-        <div className="login-container">
-            <div className="login-image-bg"></div>
-            <div className="login-form">
-                <h2 className="login-heading">Let's get started!</h2>
-                <div className="divider d-flex align-items-center my-4"></div>
-
+        <div className="log-form">
+            <h2>Let's get started!</h2>
+            <form>
                 <div className="mb-4">
-                    <input className="form-control" type="first_name" placeholder="First Name" onChange={handleFirstNameChange} />
+                    <input
+                        className="form-control"
+                        type="text"
+                        placeholder="First Name"
+                        onChange={handleFirstNameChange}
+                    />
                 </div>
 
                 <div className="mb-4">
-                    <input className="form-control" type="last_name" placeholder="Last Name" onChange={handleLastNameChange} />
+                    <input
+                        className="form-control"
+                        type="text"
+                        placeholder="Last Name"
+                        onChange={handleLastNameChange}
+                    />
                 </div>
 
                 <div className="mb-4">
-                    <input className="form-control" type="email" placeholder="Email Address" onChange={handleEmailChange} />
+                    <input
+                        className="form-control"
+                        type="email"
+                        placeholder="Email Address"
+                        onChange={handleEmailChange}
+                    />
                     {emailError && <div className="error-message">{emailError}</div>}
                 </div>
 
-
                 <div className="text-center text-md-start mt-3">
-                    <button className="login-button" onClick={handleLogin}>
+                    <button className="btn" onClick={handleLogin}>
                         Sign In
                     </button>
                 </div>
-            </div>
+            </form>
         </div>
     );
 }
