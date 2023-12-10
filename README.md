@@ -42,6 +42,7 @@ If you want to run the application locally without Docker for development purpos
 
 ### Backend
 - Run `cd Backend/`
+- Download the classifier model from [here](https://iiitaphyd-my.sharepoint.com/:u:/g/personal/jewel_benny_students_iiit_ac_in/Ed6u3YVQ7h9Pjwq-Rb6JwLQB6kSKBD9VpwhktuJX2fliYw?e=cRJYtS) (The model is too large to be uploaded to GitHub) and copy it to the `Backend/` directory. This step is important as the model is required for the backend service to run.
 - Run `pip install -r requirements.txt` to install all the dependencies to run the application.
 - Run `python -m uvicorn main:app --host 0.0.0.0 --port 8000` to run the backend service.
 - The backend service will be running at [http://localhost:8000](http://localhost:8000)
