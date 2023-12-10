@@ -1,7 +1,7 @@
-# AI-Model-Training-Deployment-Genome-Sequencing_Girlgenius
+# Genome Sequencing Location Prediction 
 
 ## Aim
-To develop and deploy an AI/ML model/web app that is capable of accurately predicting from which location a particular sequence originated or spread from.​
+To develop and deploy a sophisticated and user-friendly web application capable of predicting the origin or spread location accurately based on genomic sequences. By combining robust AI/ML models, efficient backend systems, and an intuitive frontend interface, the goal is to provide a powerful tool for researchers, healthcare professionals, and enthusiasts to analyze and understand genomic data related to the COVID-19 pandemic.
 
 ## Getting Started
 ### Prerequisites
@@ -52,6 +52,13 @@ If you want to run the application locally without Docker for development purpos
 ### Frontend
 - The frontend is built using [React](https://reactjs.org/) and [Bootstrap](https://getbootstrap.com/).
 - The console will display useful information such as the request and response data made to the backend service, and any errors that occur.
+
+#### UI Features
+- **Login Page**: Implemented secure user authentication methods for enhanced security.
+- **Main Page**: Allows users to upload/input genome sequences, explore detailed sequence information, and visualize predictive analytics with statistics, and real-time interactive maps.
+- **Data Visualization**: Offers comprehensive dashboards to gain detailed insights into prediction methodologies and dataset characteristics.
+- **Compare Sequences**: Provided tools for comparative analysis between two sequences which includes alignment scores.
+
 
 ### Backend
 - The backend service is built using [FastAPI](https://fastapi.tiangolo.com/).
