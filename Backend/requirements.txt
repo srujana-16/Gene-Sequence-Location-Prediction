@@ -1,0 +1,7 @@
+# contains the list of packages to be installed in the docker image for running the backend
+
+biopython==1.81
+fastapi==0.104.1
+uvicorn==0.24.0.post1
+scikit-learn==1.1.2
+python-multipart==0.0.6

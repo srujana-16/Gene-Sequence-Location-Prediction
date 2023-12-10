@@ -12,13 +12,27 @@ L.Icon.Default.mergeOptions({
     shadowUrl: require('leaflet/dist/images/marker-shadow.png')
 });
 
+// This component houses the code for the Map page that shows the most likely location of the sequence on a dynamic and interactive map.
+
+// The MapComponent to be rendered on the MainContent component
 const MapComponent = ({ location }) => {
+
+    // State to store the coordinates of the location
     const [coordinates, setCoordinates] = useState(null);
+
+    // State to store the loading status while the coordinates are being fetched
     const [isLoading, setIsLoading] = useState(true);
 
+    // Function to fetch the coordinates of the location using the OpenStreetMap API
     const fetchCoordinates = async () => {
+
+        // Search for the location coordinates using the OpenStreetMap API
         try {
+
+            // Send a GET request to the OpenStreetMap API to fetch the coordinates
             const response = await axios.get(`https://nominatim.openstreetmap.org/search?format=json&q=${location}`);
+
+            // If the response is not empty, set the coordinates state
             if (response.data && response.data.length > 0) {
                 var { lat, lon } = response.data[0];
                 setCoordinates([parseFloat(lat), parseFloat(lon)]);
@@ -26,18 +40,23 @@ const MapComponent = ({ location }) => {
         } catch (error) {
             console.error('Error fetching coordinates:', error);
         } finally {
+
+            // Set the loading status to false after the coordinates are fetched
             setIsLoading(false);
         }
     };
 
+    // Fetch the coordinates when the location changes
     useEffect(() => {
         fetchCoordinates();
     }, [location]);
 
+    // If the coordinates are being fetched, show a loading message
     if (isLoading) {
         return <p>Map is loading...</p>;
     }
 
+    // If the coordinates are not found, show an error message
     if (!coordinates) {
         return <p>Unable to fetch coordinates</p>;
     }

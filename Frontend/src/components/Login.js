@@ -4,12 +4,18 @@ import './Login.css';
 import '../assets/img/iiit_logo.png';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+// This component houses the code for the Login page that allows users to login to the application.
+// If needed, this component can be integrated with a backend to authenticate users.
+
 function Login({ onLogin }) {
+
+    // States to store the user's first name, last name and email address
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [emailError, setEmailError] = useState('');
 
+    // Functions to handle the input field changes
     const handleFirstNameChange = (event) => {
         setFirstName(event.target.value);
     };
@@ -29,9 +35,11 @@ function Login({ onLogin }) {
         return emailRegex.test(email);
     };
 
+    // Function to handle the login button click
     const handleLogin = () => {
         if (firstName && lastName && email) {
             if (isEmailValid(email)) {
+                // If the email address is valid, call the onLogin callback function passed from the App component
                 onLogin();
             } else {
                 setEmailError('Please enter a valid email address.');

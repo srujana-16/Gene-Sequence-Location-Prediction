@@ -6,19 +6,42 @@ import Chart from 'chart.js/auto';
 import { Link } from 'react-router-dom';
 import MapComponent from './MapComponent';
 
+// This component houses the code for the main content of the application that allows users to upload a sequence file
+// or type a sequence and predict the location of origin of the sequence. This component also houses the redirect buttons
+// to the Data Visualization and Compare Sequences pages.
 function MainContent() {
+
+    // States to store the selected file and the first few lines of the file
     const [selectedFile, setSelectedFile] = useState(null);
+
+    // State to store the dark mode status (not used in this version of the application)
     const [darkMode, setDarkMode] = useState(false);
+
+    // State to store the reference to the About Us section (not used in this version of the application)
     const aboutUsRef = useRef(null);
+
+    // State to store the selected file content
     const [fileContent, setFileContent] = useState('');
+
+    // State to store the About Us section visibility status (not used in this version of the application)
     const [showAboutUs, setShowAboutUs] = useState(false);
+
+    // State to store the prediction data received from the backend
     const [predictionData, setPredictionData] = useState(null);
+
+    // State to store the state of the prediction box
     const [predictionClose, setPredictionClose] = useState(true);
+
+    // State to store the most likely location
     const [mostLikelyLocation, setMostLikelyLocation] = useState(null);
+
+    // State to store the manual sequence (debugging purposes)
     const [manualSequence, setManualSequence] = useState('');
+
+    // State to store the typing mode status
     const [typingMode, setTypingMode] = useState(false);
 
-
+    // scroll event listener
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
         return () => {
@@ -26,6 +49,7 @@ function MainContent() {
         };
     }, []);
 
+    // Function to handle the file upload
     const handleFileChange = (e) => {
         const file = e.target.files[0];
         setSelectedFile(file);
@@ -37,12 +61,16 @@ function MainContent() {
                 const firstFewLines = contents.split('\n').slice(0, 3).join('\n');
                 setFileContent(firstFewLines);
             };
+
+            // Read the file as text
             reader.readAsText(file);
         }
+
+        // Disable typing mode
         setTypingMode(false);
     };
 
-
+    // Function to handle the file content change
     const handleFileContentChange = (e) => {
         setFileContent(e.target.value);
         setSelectedFile(null);
@@ -50,11 +78,16 @@ function MainContent() {
 
     // Enable typing mode
     const handleTypeSequence = () => {
+
+        // Enable typing mode
         setTypingMode(true);
+
+        // Clear the selected file and file content
         setSelectedFile(null);
         setFileContent('');
     };
 
+    // Function to scroll to the About Us section (not used in this version of the application)
     const scrollToAboutUs = () => {
         if (aboutUsRef.current) {
             window.scrollTo({
@@ -65,6 +98,7 @@ function MainContent() {
         }
     };
 
+    // Function to handle the scroll event
     const handleScroll = () => {
         const windowHeight = window.innerHeight;
         const documentHeight = document.documentElement.scrollHeight;
@@ -77,9 +111,15 @@ function MainContent() {
         }
     };
 
+    // Function to handle the predict button click
     const handlePredict = async () => {
+
+        // Check if a file is selected or if the user is in typing mode
+        // If yes, send a POST request to the backend to predict the location of origin of the sequence
         if (selectedFile || typingMode) {
             try {
+
+                // Create a FormData object to send the file to the backend
                 const formData = new FormData();
 
                 if (selectedFile) {
@@ -87,20 +127,34 @@ function MainContent() {
                 }
                 else if (typingMode) {
 
+                    // Get the content of the textarea
                     const Content = document.querySelector('.file-content textarea').value;
+
+                    // Set the file content to the textarea content
                     setFileContent(Content);
                     setManualSequence(fileContent);
+
+                    // Create a file from the textarea content
                     const file = new File([Content], 'manualSequence.txt', { type: 'text/plain' });
+
+                    // Append the file to the FormData object
                     formData.append('file', file);
                 }
-
+                
+                // Send a POST request to the backend to get the location predictions
                 const response = await axios.post('http://localhost:8000/send_seq', formData);
                 const prediction = response.data;
 
                 // Update the state with the prediction data
                 setPredictionData(prediction);
+
+                // toggle predictionClose
                 setPredictionClose(false);
+
+                // Get the top locatiobs
                 const labels = Object.keys(prediction);
+
+                // Set the most likely location as the first location
                 setMostLikelyLocation(labels[0]);
                 //console.log(mostLikelyLocation);
 
@@ -117,8 +171,10 @@ function MainContent() {
         // toggle predictionClose
         setPredictionClose(true);
     }
-    // function to create chart
+
+    // function to create doughtnut chart to display prediction data
     const createChart = () => {
+
         // Get the chart container
         const chartContainer = document.querySelector('.prediction-chart');
 
@@ -126,7 +182,8 @@ function MainContent() {
         if (chartContainer) {
 
             Chart.getChart(chartContainer)?.destroy();
-            // remove canvas element if it exists
+
+            // remove canvas element if it exists to prevent multiple charts from being created
             if (chartContainer?.firstChild) {
                 chartContainer.removeChild(chartContainer.firstChild);
             }
@@ -143,7 +200,7 @@ function MainContent() {
             const labels = Object.keys(predictionData);
             const data = Object.values(predictionData);
 
-            // Create the chart using Chart.js
+            // Create the chart using Chart.js and the extracted prediction data
             new Chart(ctx, {
                 type: 'doughnut',
                 data: {
@@ -167,7 +224,7 @@ function MainContent() {
 
     };
 
-    // log predictionData
+    // log predictionData (debugging purposes)
     useEffect(() => {
         if (predictionData && !predictionClose) {
             // This will run every time predictionData changes
@@ -196,6 +253,8 @@ function MainContent() {
                         Upload your sequence file to predict the location of origin of the sequence.
                     </p>
                 </div>
+
+                {/* If the user is has not clicked on the predict button, show the file content box */}
                 {predictionClose && (
                     <div className={`file-content-box`}>
                         {(selectedFile && fileContent) ? (
@@ -229,7 +288,7 @@ function MainContent() {
                             <label className="upload-button">
                                 <input
                                     type="file"
-                                    accept=".txt, .fasta, .fastq"
+                                    accept=".txt, .fasta"
                                     onChange={handleFileChange}
                                     style={{ display: 'none' }}
                                 />
@@ -240,7 +299,7 @@ function MainContent() {
                     </div>
                 )}
 
-
+                {/* If the prediction data is available, show the prediction box */}
                 {predictionData && !predictionClose && (
                     <div className={`prediction-box`}>
                         <div className='prediction-title-wrapper'>
@@ -254,6 +313,7 @@ function MainContent() {
                                 Your sample is most likely from {mostLikelyLocation}.
                             </div>
                             <div className="prediction-map">
+                                {/* The most likely location is displayed on a map */}
                                 <MapComponent location={mostLikelyLocation} />
                             </div>
                         </div>
@@ -266,5 +326,3 @@ function MainContent() {
 }
 
 export default MainContent;
-
-

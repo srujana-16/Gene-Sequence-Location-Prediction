@@ -4,6 +4,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../assets/img/statewise_distribution.png';
 import '../assets/img/statewise_accuracy.png';
 
+// This component houses the code for the Data Visualization page that shows the statewise distribution of the dataset 
+// and the prediction accuracy of the model. This page is only for a quick glance at additional information, and does not
+// add any functionality to the application.
+
 const DataVisualization = () => {
   return (
     <div className="dashboard">

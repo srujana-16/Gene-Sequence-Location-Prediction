@@ -1,9 +1,13 @@
-/node_modules
+# Ignore Node.js related files
+node_modules
 npm-debug.log
-yarn-error.log
-.vscode/
-.git/
-.idea/
 
 # Ignore build artifacts
-build/
+/build
+/dist
+
+# Ignore development files
+.DS_Store
+.env
+.git
+.vscode

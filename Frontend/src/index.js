@@ -6,6 +6,8 @@ import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+
+  // The app is wrapped in React.StrictMode to show warnings in the console
   <React.StrictMode>
     <App />
   </React.StrictMode>

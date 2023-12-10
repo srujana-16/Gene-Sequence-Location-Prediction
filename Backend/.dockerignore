@@ -1,0 +1,16 @@
+# Ignore Python-related files
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore development and virtual environment files
+.vscode
+.idea
+venv
+env
+*.env
+
+# Ignore version control files and directories
+.git
+.gitignore
