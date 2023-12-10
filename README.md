@@ -63,7 +63,7 @@ If you want to run the application locally without Docker for development purpos
     ...
   }
   ```
-  - `/align_seq`: This endpoint accepts a POST request with a JSON body containing two sequence files. The response is a JSON body containing the alignment of the two sequences in the format:
+  - `/align_seq`: This endpoint accepts a POST request with a JSON body containing two sequence files. The response is a JSON body containing the alignment score of the two sequences in the format:
   ```json
   {
     "score": alignment_score
